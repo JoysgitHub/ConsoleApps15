@@ -17,11 +17,28 @@ namespace ConsoleAppProject.App01
         private double feet;
 
         public void Run()
+            
         {
+            ConverterMenu();
             OutputHeading();
             InputMiles();
             CalclateFeet();
             OutputFeet();
+
+        }
+
+
+        private void ConverterMenu()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.WriteLine();
+            Console.WriteLine(" =================================================");
+            Console.WriteLine("      Enter 1 to Convert Miles to Feet:           ");
+            Console.WriteLine("      Enter 2 to Convert Miles to Meters:         ");
+            Console.WriteLine("      Enter 3 to Exit:                            ");
+            Console.WriteLine(" =================================================");
+            Console.WriteLine();
 
         }
 
