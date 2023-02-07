@@ -5,7 +5,9 @@ using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App01
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// This app will prompt the user to input a distance 
+    /// using the chosen unit and it will calculate and
+    /// output the equivalent distance in another unit
     /// </summary>
     /// <author>
     /// Jouson version 0.1
@@ -91,29 +93,41 @@ namespace ConsoleAppProject.App01
         public void MilesToFeet()
         {
             Console.ForegroundColor = ConsoleColor.Green;
+
             OutputHeading("   Convert Miles to Feet                          ");
+
             miles = InputDistance("Please enter the number of miles: ");
+
             CalculateFeet();
-            OutputFeet();
+
+            OutputDistance(miles, nameof(miles), feet, nameof(feet));
         }
 
         public void FeetToMiles()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
+
             OutputHeading("   Convert Feet to Miles                          ");
+
             feet = InputDistance("Please enter the number of feet: ");
+
             CalculateMiles();
-            OutputMiles();
+
+            OutputDistance(feet, nameof(feet), miles, nameof(miles));
 
         }
 
         public void MilesToMeters()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
+
             OutputHeading("   Convert Miles to Meters                          ");
+
             miles = InputDistance("Please enter the number of miles: ");
+
             CalculateMeters();
-            OutputMeters();
+
+            OutputDistance(miles, nameof(miles), meters, nameof(meters));
         }
 
         //------------Headings-------------------------------------
@@ -161,25 +175,14 @@ namespace ConsoleAppProject.App01
 
         }
         //-------------------Outputs--------------
-        private void OutputFeet()
+
+        private void OutputDistance(double fromDistance, string fromUnit,
+            double toDistance, string toUnit)
         {
             Console.WriteLine();
-            Console.WriteLine(miles + " miles is " + feet + " feet!");
+            Console.WriteLine($"{fromDistance} {fromUnit} is {toDistance} {toUnit} !");
             Console.WriteLine();
         }
 
-        private void OutputMiles()
-        {
-            Console.WriteLine();
-            Console.WriteLine(feet + " feet is " + miles + " miles!");
-            Console.WriteLine();
-        }
-
-        private void OutputMeters()
-        {
-            Console.WriteLine();
-            Console.WriteLine(miles + " miles is " + meters + " meters!");
-            Console.WriteLine();
-        }
     }
 }
