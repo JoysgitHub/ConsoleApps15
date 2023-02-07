@@ -16,14 +16,58 @@ namespace ConsoleAppProject.App01
 
         private double feet;
 
+        private double meters;
+
         public void Run()
             
         {
-            ConverterMenu();
-            OutputHeading();
-            InputMiles();
-            CalclateFeet();
-            OutputFeet();
+            ExecuteMenu();
+
+            //OutputHeading();
+            //InputMiles();
+            //CalclateFeet();
+            //OutputFeet();
+
+        }
+
+
+        private void ExecuteMenu()
+        {
+            bool quit = false;
+
+            while (!quit)
+            {
+                ConverterMenu();
+                int input = int.Parse(Console.ReadLine());
+           
+
+                switch (input)
+                {
+                    case 1:
+                        FeetOutputHeading();
+                        InputMiles();
+                        CalclateFeet();
+                        OutputFeet();
+                        break;
+
+                    case 2:
+                        MetersOutputHeading();
+                        InputMiles();
+                        CalclateMeters();
+                        OutputMeters();
+                        break;
+
+                    case 3:
+                        quit= true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid input");
+                        break;
+                }
+
+            }
+
 
         }
 
@@ -45,7 +89,7 @@ namespace ConsoleAppProject.App01
         ///Prompt the user to enter the distance in miles
         ///Input the mukes as a double number
 
-        private void  OutputHeading()
+        private void  FeetOutputHeading()
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -57,6 +101,20 @@ namespace ConsoleAppProject.App01
             Console.WriteLine();
 
         }
+
+        private void MetersOutputHeading()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.WriteLine();
+            Console.WriteLine(" =================================================");
+            Console.WriteLine("   Convert Miles to Meters                         ");
+            Console.WriteLine("        by Joyson Cardoso                         ");
+            Console.WriteLine(" =================================================");
+            Console.WriteLine();
+
+        }
+
         private void InputMiles()
         {
             Console.Write("Please enter the number of miles: ");
@@ -64,9 +122,16 @@ namespace ConsoleAppProject.App01
             miles = Convert.ToDouble(value);
         }
 
+
         private void CalclateFeet()
         {
             feet = miles * 5280;
+
+        }
+
+        private void CalclateMeters()
+        {
+            meters = miles * 1609.344;
 
         }
 
@@ -74,6 +139,13 @@ namespace ConsoleAppProject.App01
         {
             Console.WriteLine();
             Console.WriteLine(miles + " miles is " + feet + " feet!");
+            Console.WriteLine();
+        }
+
+        private void OutputMeters()
+        {
+            Console.WriteLine();
+            Console.WriteLine(miles + " miles is " + meters + " meters!");
             Console.WriteLine();
         }
     }
