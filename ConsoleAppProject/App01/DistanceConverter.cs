@@ -22,14 +22,10 @@ namespace ConsoleAppProject.App01
             
         {
             ExecuteMenu();
-
-            //OutputHeading();
-            //InputMiles();
-            //CalclateFeet();
-            //OutputFeet();
-
         }
 
+        ///This function creates an infinite loop which prints the converter menu
+        ///and prompts the user to enter a value between 1 to 3. 
 
         private void ExecuteMenu()
         {
