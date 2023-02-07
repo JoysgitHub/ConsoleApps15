@@ -12,6 +12,10 @@ namespace ConsoleAppProject.App01
     /// </author>
     public class DistanceConverter
     {
+        public const int FEET_IN_MILES = 5280;
+
+        public const double METERS_IN_MILES = 1609.344;
+
         private double miles;
 
         private double feet;
@@ -21,13 +25,13 @@ namespace ConsoleAppProject.App01
         public void Run()
             
         {
-            ExecuteMenu();
+            DisplayMenu();
         }
 
         ///This function creates an infinite loop which prints the converter menu
         ///and prompts the user to enter a value between 1 to 3. 
 
-        private void ExecuteMenu()
+        private void DisplayMenu()
         {
             bool quit = false;
 
@@ -40,21 +44,19 @@ namespace ConsoleAppProject.App01
                 switch (input)
                 {
                     case 1:
-                        FeetOutputHeading();
-                        InputMiles();
-                        CalclateFeet();
-                        OutputFeet();
+                        MilesToFeet();
                         break;
 
                     case 2:
-                        MetersOutputHeading();
-                        InputMiles();
-                        CalclateMeters();
-                        OutputMeters();
+                        FeetToMiles();
                         break;
 
                     case 3:
-                        quit= true;
+                        MilesToMeters();
+                        break;
+
+                    case 4:
+                        quit = true;
                         break;
 
                     default:
@@ -75,8 +77,9 @@ namespace ConsoleAppProject.App01
             Console.WriteLine();
             Console.WriteLine(" =================================================");
             Console.WriteLine("      Enter 1 to Convert Miles to Feet:           ");
-            Console.WriteLine("      Enter 2 to Convert Miles to Meters:         ");
-            Console.WriteLine("      Enter 3 to Exit:                            ");
+            Console.WriteLine("      Enter 2 to Convert Feet to Miles :           ");
+            Console.WriteLine("      Enter 3 to Convert Miles to Meters:         ");
+            Console.WriteLine("      Enter 4 to Exit:                            ");
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
@@ -85,56 +88,90 @@ namespace ConsoleAppProject.App01
         ///Prompt the user to enter the distance in miles
         ///Input the mukes as a double number
 
-        private void  FeetOutputHeading()
+        public void MilesToFeet()
         {
             Console.ForegroundColor = ConsoleColor.Green;
+            OutputHeading("   Convert Miles to Feet                          ");
+            miles = InputDistance("Please enter the number of miles: ");
+            CalculateFeet();
+            OutputFeet();
+        }
 
-            Console.WriteLine();
-            Console.WriteLine(" =================================================");
-            Console.WriteLine("   Convert Miles to Feet                          ");
-            Console.WriteLine("        by Joyson Cardoso                         ");
-            Console.WriteLine(" =================================================");
-            Console.WriteLine();
+        public void FeetToMiles()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            OutputHeading("   Convert Feet to Miles                          ");
+            feet = InputDistance("Please enter the number of feet: ");
+            CalculateMiles();
+            OutputMiles();
 
         }
 
-        private void MetersOutputHeading()
+        public void MilesToMeters()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
+            OutputHeading("   Convert Miles to Meters                          ");
+            miles = InputDistance("Please enter the number of miles: ");
+            CalculateMeters();
+            OutputMeters();
+        }
+
+        //------------Headings-------------------------------------
+
+        private void  OutputHeading(String prompt)
+        {
+            
 
             Console.WriteLine();
             Console.WriteLine(" =================================================");
-            Console.WriteLine("   Convert Miles to Meters                         ");
+            Console.WriteLine(prompt);
             Console.WriteLine("        by Joyson Cardoso                         ");
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
         }
 
-        private void InputMiles()
+
+        //-----------------Input-----------------
+
+        private double InputDistance(string prompt)
         {
-            Console.Write("Please enter the number of miles: ");
+            Console.Write(prompt);
             string value = Console.ReadLine();
-            miles = Convert.ToDouble(value);
+            return Convert.ToDouble(value);
         }
 
 
-        private void CalclateFeet()
+        //------------------Calculate------------------------
+        private void CalculateFeet()
         {
-            feet = miles * 5280;
+            feet = miles * FEET_IN_MILES;
 
         }
 
-        private void CalclateMeters()
+        private void CalculateMiles()
         {
-            meters = miles * 1609.344;
+            miles = feet / FEET_IN_MILES;
 
         }
 
+        private void CalculateMeters()
+        {
+            meters = miles * METERS_IN_MILES;
+
+        }
+        //-------------------Outputs--------------
         private void OutputFeet()
         {
             Console.WriteLine();
             Console.WriteLine(miles + " miles is " + feet + " feet!");
+            Console.WriteLine();
+        }
+
+        private void OutputMiles()
+        {
+            Console.WriteLine();
+            Console.WriteLine(feet + " feet is " + miles + " miles!");
             Console.WriteLine();
         }
 
