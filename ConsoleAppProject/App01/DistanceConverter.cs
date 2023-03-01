@@ -22,12 +22,20 @@ namespace ConsoleAppProject.App01
 
         public const double FEET_IN_METERS = 3.280839895;
 
+        public const int METERS_IN_KILOMETERS = 1000;
+
+        public const double FEET_IN_KILOMETERS = 3280.839895;
+
+        public const double MILES_IN_KILOMETERS = 1.60935;
+
         //Distance Unit Names
         public const string FEET = "Feet";
 
         public const string METERS = "Meters";
 
         public const string MILES = "Miles";
+
+        public const string KILOMETERS = "Kilometers";
 
         //Distance Variables
         private double fromDistance;
@@ -38,7 +46,6 @@ namespace ConsoleAppProject.App01
         private string toUnit;
 
         private string fromUnit;
-
 
         ///Prompt the user to enter the distance in miles
         ///Input the mukes as a double number
@@ -91,7 +98,11 @@ namespace ConsoleAppProject.App01
             {
                 return MILES;
             }
-            
+            else if (choice.Equals("4"))
+            {
+                return KILOMETERS;
+            }
+
             return null;
             
             
@@ -106,15 +117,16 @@ namespace ConsoleAppProject.App01
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine();
-                Console.WriteLine($"1. {FEET}");
-                Console.WriteLine($"2. {METERS}");
-                Console.WriteLine($"3. {MILES}");
+                Console.WriteLine($" 1. {FEET}");
+                Console.WriteLine($" 2. {METERS}");
+                Console.WriteLine($" 3. {MILES}");
+                Console.WriteLine($" 4. {KILOMETERS}");
                 Console.WriteLine();
 
                 Console.Write(prompt);
                 string choice = Console.ReadLine();
 
-                if(choice == "1"|| choice =="2"|| choice == "3")
+                if(choice == "1"|| choice =="2"|| choice == "3" || choice == "4")
                 {
                     return choice;
                     break;
@@ -123,7 +135,7 @@ namespace ConsoleAppProject.App01
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
-                    Console.WriteLine("Please Enter A Number between 1-3");
+                    Console.WriteLine(" Please Enter A Number between 1-3");
                 }
             }
             
@@ -163,7 +175,7 @@ namespace ConsoleAppProject.App01
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
-                    Console.WriteLine("Please Enter An Integar or A Double");
+                    Console.WriteLine(" Please Enter An Integar or A Double");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Cyan;
 
@@ -202,6 +214,30 @@ namespace ConsoleAppProject.App01
             {
                 toDistance = fromDistance / FEET_IN_METERS;
             }
+            else if (fromUnit == METERS && toUnit == KILOMETERS)
+            {
+                toDistance = fromDistance * METERS_IN_KILOMETERS;
+            }
+            else if (fromUnit == KILOMETERS && toUnit == METERS)
+            {
+                toDistance = fromDistance / METERS_IN_KILOMETERS;
+            }
+            else if (fromUnit == KILOMETERS && toUnit == FEET)
+            {
+                toDistance = fromDistance * FEET_IN_KILOMETERS;
+            }
+            else if (fromUnit == FEET && toUnit == KILOMETERS)
+            {
+                toDistance = fromDistance / FEET_IN_KILOMETERS;
+            }
+            else if (fromUnit == MILES && toUnit == KILOMETERS)
+            {
+                toDistance = fromDistance * MILES_IN_KILOMETERS;
+            }
+            else if (fromUnit == KILOMETERS && toUnit == MILES)
+            {
+                toDistance = fromDistance / MILES_IN_KILOMETERS;
+            }
         }
 
 
@@ -210,7 +246,7 @@ namespace ConsoleAppProject.App01
         private void OutputDistance()
         {
             Console.WriteLine();
-            Console.WriteLine($"{fromDistance} {fromUnit} is {toDistance} {toUnit} !");
+            Console.WriteLine($" {fromDistance} {fromUnit} is {toDistance} {toUnit} !");
             Console.WriteLine();
         }
 
