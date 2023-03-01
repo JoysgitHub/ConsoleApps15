@@ -8,7 +8,7 @@ namespace ConsoleAppProject.App01
     public enum DistanceUnits
     {
         [Display(Name = "No Unit")]
-        NoUnit,
+        NoUnits,
         Feet,
         Metres,
         Kilometres,

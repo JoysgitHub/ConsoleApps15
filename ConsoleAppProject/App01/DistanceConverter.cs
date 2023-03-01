@@ -28,6 +28,27 @@ namespace ConsoleAppProject.App01
 
         public const double MILES_IN_KILOMETERS = 1.60935;
 
+        public const int CENTIMETERS_IN_METERS = 100;
+
+        public const int CENTIMETERS_IN_KILOMETERS = 100000;
+
+        public const int CENTIMETERS_IN_MILES = 160935;
+
+        public const double CENTIMETERS_IN_FEET = 30.48;
+
+        public const int METERS_IN_MILIMETERS = 1000;
+
+        public const int MILIMETERS_IN_KILOMETERS = 1000000;
+
+        public const int CENTIMETERS_IN_MILIMETERS = 10;
+
+        public const int MILE_IN_MILIMETERS = 1609350;
+
+        public const double MILIMETERS_IN_FEET = 304.8;
+
+
+
+
         //Distance Unit Names
         public const string FEET = "Feet";
 
@@ -36,6 +57,10 @@ namespace ConsoleAppProject.App01
         public const string MILES = "Miles";
 
         public const string KILOMETERS = "Kilometers";
+
+        public const string CENTIMETERS = "Centimeters";
+
+        public const string MILIMETERS = "Milimeters";
 
         //Distance Variables
         private double fromDistance;
@@ -102,6 +127,14 @@ namespace ConsoleAppProject.App01
             {
                 return KILOMETERS;
             }
+            else if (choice.Equals("5"))
+            {
+                return CENTIMETERS;
+            }
+            else if (choice.Equals("6"))
+            {
+                return MILIMETERS;
+            }
 
             return null;
             
@@ -121,12 +154,14 @@ namespace ConsoleAppProject.App01
                 Console.WriteLine($" 2. {METERS}");
                 Console.WriteLine($" 3. {MILES}");
                 Console.WriteLine($" 4. {KILOMETERS}");
+                Console.WriteLine($" 5. {CENTIMETERS}");
+                Console.WriteLine($" 6. {MILIMETERS}");
                 Console.WriteLine();
 
                 Console.Write(prompt);
                 string choice = Console.ReadLine();
 
-                if(choice == "1"|| choice =="2"|| choice == "3" || choice == "4")
+                if(choice == "1"|| choice =="2"|| choice == "3" || choice == "4" || choice == "5" || choice == "6")
                 {
                     return choice;
                     break;
@@ -135,7 +170,7 @@ namespace ConsoleAppProject.App01
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
-                    Console.WriteLine(" Please Enter A Number between 1-3");
+                    Console.WriteLine(" Please Enter A Number between 1-6");
                 }
             }
             
@@ -237,6 +272,78 @@ namespace ConsoleAppProject.App01
             else if (fromUnit == KILOMETERS && toUnit == MILES)
             {
                 toDistance = fromDistance / MILES_IN_KILOMETERS;
+            }
+            else if (fromUnit == CENTIMETERS && toUnit == METERS)
+            {
+                toDistance = fromDistance / CENTIMETERS_IN_METERS;
+            }
+            else if (fromUnit == METERS && toUnit == CENTIMETERS)
+            {
+                toDistance = fromDistance * CENTIMETERS_IN_METERS;
+            }
+            else if (fromUnit == CENTIMETERS && toUnit == KILOMETERS)
+            {
+                toDistance = fromDistance / CENTIMETERS_IN_KILOMETERS;
+            }
+            else if (fromUnit == KILOMETERS && toUnit == CENTIMETERS)
+            {
+                toDistance = fromDistance * CENTIMETERS_IN_KILOMETERS;
+            }
+            else if (fromUnit == CENTIMETERS && toUnit == MILES )
+            {
+                toDistance = fromDistance / CENTIMETERS_IN_MILES;
+            }
+            else if (fromUnit == MILES && toUnit == CENTIMETERS)
+            {
+                toDistance = fromDistance * CENTIMETERS_IN_MILES;
+            }
+            else if (fromUnit == CENTIMETERS && toUnit == FEET)
+            {
+                toDistance = fromDistance / CENTIMETERS_IN_FEET;
+            }
+            else if (fromUnit == FEET && toUnit == CENTIMETERS)
+            {
+                toDistance = fromDistance * CENTIMETERS_IN_FEET;
+            }
+            else if (fromUnit == MILIMETERS && toUnit == METERS)
+            {
+                toDistance = fromDistance / METERS_IN_MILIMETERS;
+            }
+            else if (fromUnit == METERS && toUnit == MILIMETERS)
+            {
+                toDistance = fromDistance * METERS_IN_MILIMETERS;
+            }
+            else if (fromUnit == MILIMETERS && toUnit == KILOMETERS)
+            {
+                toDistance = fromDistance / MILIMETERS_IN_KILOMETERS;
+            }
+            else if (fromUnit == KILOMETERS && toUnit == MILIMETERS)
+            {
+                toDistance = fromDistance * MILIMETERS_IN_KILOMETERS;
+            }
+            else if (fromUnit == MILIMETERS && toUnit == CENTIMETERS)
+            {
+                toDistance = fromDistance / CENTIMETERS_IN_MILIMETERS;
+            }
+            else if (fromUnit == CENTIMETERS && toUnit == MILIMETERS)
+            {
+                toDistance = fromDistance * CENTIMETERS_IN_MILIMETERS;
+            }
+            else if (fromUnit == MILIMETERS && toUnit == MILES)
+            {
+                toDistance = fromDistance / MILE_IN_MILIMETERS;
+            }
+            else if (fromUnit == MILES && toUnit == MILIMETERS)
+            {
+                toDistance = fromDistance * MILE_IN_MILIMETERS;
+            }
+            else if (fromUnit == MILIMETERS && toUnit == FEET)
+            {
+                toDistance = fromDistance / MILIMETERS_IN_FEET;
+            }
+            else if (fromUnit == FEET && toUnit == MILIMETERS)
+            {
+                toDistance = fromDistance * MILIMETERS_IN_FEET;
             }
         }
 
