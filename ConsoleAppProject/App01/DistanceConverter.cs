@@ -78,7 +78,7 @@ namespace ConsoleAppProject.App01
         public void ConvertDistance()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            OutputHeading();
+            ConsoleHelper.OutputHeading("Distance Converter");
             fromUnit = SelectUnit(" Please select the from distance unit > ");
             toUnit = SelectUnit(" Please select the to distance unit> ");
 
@@ -98,7 +98,7 @@ namespace ConsoleAppProject.App01
         private string SelectUnit(string prompt)
         {
 
-            string choice = DisplayChoices(prompt);
+            string choice = DisplayChoices();
             string unit = ExecuteChoice(choice);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"\n You have chosen {unit}");
@@ -143,55 +143,18 @@ namespace ConsoleAppProject.App01
 
 
         //------------display choice--------------------------
-        private static string DisplayChoices(string prompt)
+        private static string DisplayChoices()
         {
-            
-            while (true)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine();
-                Console.WriteLine($" 1. {FEET}");
-                Console.WriteLine($" 2. {METERS}");
-                Console.WriteLine($" 3. {MILES}");
-                Console.WriteLine($" 4. {KILOMETERS}");
-                Console.WriteLine($" 5. {CENTIMETERS}");
-                Console.WriteLine($" 6. {MILIMETERS}");
-                Console.WriteLine();
+           
+            Console.ForegroundColor = ConsoleColor.Cyan;
+                
+            string[] choices = { "Feet", "Meters", "Miles", "Kilometers", "Centimeters", "Milimeters" };
+            int choice = ConsoleHelper.SelectChoice(choices);
 
-                Console.Write(prompt);
-                string choice = Console.ReadLine();
-
-                if(choice == "1"|| choice =="2"|| choice == "3" || choice == "4" || choice == "5" || choice == "6")
-                {
-                    return choice;
-                    break;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine();
-                    Console.WriteLine(" Please Enter A Number between 1-6");
-                }
-            }
-            
-            
+            return Convert.ToString(choice);
+ 
         }
 
-        //------------Headings-------------------------------------
-
-        private void  OutputHeading()
-        {
-            
-
-            Console.WriteLine();
-            Console.WriteLine(" =================================================");
-            Console.WriteLine("        Distance Converter ");
-            Console.WriteLine("        by Joyson Cardoso                         ");
-            Console.WriteLine(" =================================================");
-            Console.WriteLine();
-
-        }
-         
 
         //-----------------Input-----------------
 

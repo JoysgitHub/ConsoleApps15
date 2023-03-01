@@ -30,7 +30,7 @@ namespace ConsoleAppProject.Helpers
 
             // Get the user's choice
 
-            int choiceNo = (int)InputNumber("\n Please enter your choice > ", 
+            int choiceNo = (int)InputNumber("\n Please enter your choice > ",
                                             1, choices.Length);
             return choiceNo;
         }
@@ -48,6 +48,23 @@ namespace ConsoleAppProject.Helpers
                 choiceNo++;
                 Console.WriteLine($"    {choiceNo}.  {choice}");
             }
+        }
+
+
+        /// <summary>
+        /// This displays all the available choices in a numbered
+        /// list, starting at 1
+        /// </summary>
+        public static void OnlyDisplayChoices(string[] choices)
+        {
+            int choiceNo = 0;
+
+            foreach (string choice in choices)
+            {
+                choiceNo++;
+                Console.WriteLine($"    {choiceNo}.  {choice}");
+            }
+            Console.WriteLine();
         }
 
 
@@ -74,7 +91,10 @@ namespace ConsoleAppProject.Helpers
                 catch (Exception)
                 {
                     isValid = false;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
                     Console.WriteLine(" INVALID NUMBER!");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                 }
 
             } while (!isValid);
@@ -103,7 +123,10 @@ namespace ConsoleAppProject.Helpers
                 if (number < min || number > max)
                 {
                     isValid = false;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
                     Console.WriteLine($"Number must be between {min} and {max}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                 }
                 else isValid = true;
 
@@ -121,15 +144,15 @@ namespace ConsoleAppProject.Helpers
         /// </summary>
         public static void OutputHeading(string heading)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
-            Console.WriteLine("\n ---------------------------------");
+            Console.WriteLine("\n ---------------------------------------------");
             Console.WriteLine($"    {heading}          ");
-            Console.WriteLine("     by Derek Peacock           ");
-            Console.WriteLine(" ---------------------------------" +
+            Console.WriteLine("     by Joyson Cardoso           ");
+            Console.WriteLine(" ---------------------------------------------" +
                 "\n");
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            
         }
 
         /// <summary>
@@ -143,7 +166,7 @@ namespace ConsoleAppProject.Helpers
             Console.WriteLine($"\n {title}");
             Console.Write(" ");
 
-            for(int count = 0; count <= title.Length; count++)
+            for (int count = 0; count <= title.Length; count++)
             {
                 Console.Write("-");
             }

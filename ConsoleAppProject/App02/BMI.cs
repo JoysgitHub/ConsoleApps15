@@ -1,4 +1,8 @@
-﻿namespace ConsoleAppProject.App02
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
+using ConsoleAppProject.Helpers;
+  
+namespace ConsoleAppProject.App02
 {
     /// <summary>
     /// Please describe the main features of this App
@@ -8,5 +12,10 @@
     /// </author>
     public class BMI
     {
+        public void BMICalculator()
+        {
+            Console.WriteLine("WOrking....");
+        }
+
     }
 }
