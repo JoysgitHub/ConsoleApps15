@@ -40,38 +40,39 @@ namespace ConsoleAppProject.App01
         private string fromUnit;
 
 
-        //public DistanceConverter()
-        //{
-        //    fromUnit = MILES;
-        //    toUnit = FEET;
-        //}
-
-
         ///Prompt the user to enter the distance in miles
         ///Input the mukes as a double number
 
         public void ConvertDistance()
         {
-            //Console.ForegroundColor = ConsoleColor.Green;
-            fromUnit = SelectUnit("Please select the from distance unit > ");
-            toUnit = SelectUnit("Please select the to distance unit> ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            OutputHeading();
+            fromUnit = SelectUnit(" Please select the from distance unit > ");
+            toUnit = SelectUnit(" Please select the to distance unit> ");
 
-            OutputHeading($"   Converting {fromUnit} to  {toUnit}                      ");
+            Console.WriteLine($" Converting {fromUnit} to  {toUnit}");
+            Console.WriteLine($" ---------------------------------------------");
 
-            fromDistance = InputDistance($"Please enter the number of {fromUnit} > ");
+            fromDistance = InputDistance($" Please enter the number of {fromUnit} > ");
 
             CalculateDistance();
-
+            Console.ForegroundColor = ConsoleColor.Green;
             OutputDistance();
+            Console.ForegroundColor = ConsoleColor.Cyan;
         }
 
-       //-------------unit Selection-----------------------------
+        //-------------unit Selection-----------------------------
 
         private string SelectUnit(string prompt)
         {
-           
+
             string choice = DisplayChoices(prompt);
-            return ExecuteChoice(choice);
+            string unit = ExecuteChoice(choice);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"\n You have chosen {unit}");
+            Console.WriteLine($"          ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            return unit;
 
         }
         //-----------execute choice-----------------------
@@ -100,40 +101,76 @@ namespace ConsoleAppProject.App01
         //------------display choice--------------------------
         private static string DisplayChoices(string prompt)
         {
-            Console.WriteLine();
-            Console.WriteLine($"1. {FEET}");
-            Console.WriteLine($"2. {METERS}");
-            Console.WriteLine($"3. {MILES}");
-            Console.WriteLine();
+            
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine();
+                Console.WriteLine($"1. {FEET}");
+                Console.WriteLine($"2. {METERS}");
+                Console.WriteLine($"3. {MILES}");
+                Console.WriteLine();
 
-            Console.Write(prompt);
-            string choice = Console.ReadLine();
-            return choice;
+                Console.Write(prompt);
+                string choice = Console.ReadLine();
+
+                if(choice == "1"|| choice =="2"|| choice == "3")
+                {
+                    return choice;
+                    break;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine("Please Enter A Number between 1-3");
+                }
+            }
+            
+            
         }
 
         //------------Headings-------------------------------------
 
-        private void  OutputHeading(String prompt)
+        private void  OutputHeading()
         {
             
 
             Console.WriteLine();
             Console.WriteLine(" =================================================");
-            Console.WriteLine(prompt);
+            Console.WriteLine("        Distance Converter ");
             Console.WriteLine("        by Joyson Cardoso                         ");
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
         }
-
+         
 
         //-----------------Input-----------------
 
         private double InputDistance(string prompt)
         {
-            Console.Write(prompt);
-            string value = Console.ReadLine();
-            return Convert.ToDouble(value);
+            while(true)
+            {
+                Console.Write(prompt);
+                string value = Console.ReadLine();
+                if(int.TryParse(value,out int num1) || double.TryParse(value, out double num2))
+                {
+                    return Convert.ToDouble(value);
+                    break;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine("Please Enter An Integar or A Double");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+
+                }
+            }
+            
+            //return Convert.ToDouble(value);
         }
 
 
@@ -179,3 +216,4 @@ namespace ConsoleAppProject.App01
 
     }
 }
+   
