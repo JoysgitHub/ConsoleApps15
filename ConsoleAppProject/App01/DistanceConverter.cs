@@ -160,32 +160,14 @@ namespace ConsoleAppProject.App01
 
         private double InputDistance(string prompt)
         {
-            while(true)
-            {
-                Console.Write(prompt);
-                string value = Console.ReadLine();
-                if(int.TryParse(value,out int num1) || double.TryParse(value, out double num2))
-                {
-                    return Convert.ToDouble(value);
-                    break;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine();
-                    Console.WriteLine(" Please Enter An Integar or A Double");
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+            double value = ConsoleHelper.InputDecimal(prompt);
 
-                }
-            }
-            
-            //return Convert.ToDouble(value);
+            return value;
         }
 
 
         //------------------Calculate------------------------
-       
+
         private void CalculateDistance()
         {
             if(fromUnit == MILES && toUnit == FEET)

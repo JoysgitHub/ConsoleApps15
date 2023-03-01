@@ -174,5 +174,35 @@ namespace ConsoleAppProject.Helpers
             Console.WriteLine("\n");
             Console.ResetColor();
         }
+
+
+        /// <summary>
+        /// This method will ensure that the user inputs a 
+        /// decimal number.
+        /// </summary>
+        public static double InputDecimal(string prompt)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                string value = Console.ReadLine();
+                if (double.TryParse(value, out double num1))
+                {
+                    return Convert.ToDouble(value);
+                    break;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine(" Please Enter An Integar or A Double");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+
+                }
+            }
+
+            //return Convert.ToDouble(value);
+        }
     }
 }
