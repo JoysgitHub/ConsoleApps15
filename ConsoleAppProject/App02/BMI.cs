@@ -16,6 +16,12 @@ namespace ConsoleAppProject.App02
         //private string unitChoice;
         private double bmi;
 
+        public const double UNDERWIGHT = 18.5;
+
+        public const int HEALTHY = 25;
+
+        public const int OVERWEIGHT = 30;
+
         public void BMICalculator()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -30,17 +36,24 @@ namespace ConsoleAppProject.App02
 
             string[] choices = { "Metric Units", "Imperial Units", };
             int choice = ConsoleHelper.SelectChoice(choices);
+            ExecuteChoice(choice);
+            return null;
 
-            if (choice == 1 )
+        }
+
+
+        private string ExecuteChoice(int choice)
+        {
+            if (choice == 1)
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(" Metric selected");
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                double bmiResult = InputMetric();
+                InputMetric();
 
             }
-            else 
+            else
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -51,27 +64,38 @@ namespace ConsoleAppProject.App02
             }
 
             return null;
-         
         }
+
 
         public double InputMetric()
         {
             Console.WriteLine();
             double weight = ConsoleHelper.InputDecimal(" Enter Your Weight In Kg > ");
             Console.WriteLine();
-            double height = ConsoleHelper.InputDecimal(" Enter Your Height In Meters > ");
+            double heightCM = ConsoleHelper.InputDecimal(" Enter Your Height In Centimeters > ");
             Console.WriteLine();
+            CalculateMetric(weight, heightCM);
+
+
+            return weight;
+        }
+
+
+        public double CalculateMetric(double weight, double heightCM)
+        {
+            double height = heightCM / 100;
             bmi = weight / (height * height);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($" Your BMI is: {bmi}");
+            Console.WriteLine($" Your BMI is: {bmi:f2}");
             Console.WriteLine();
             BMIResult();
-            
+
             return bmi;
         }
 
 
+        
         public double InputImperial()
         {
             Console.WriteLine();
@@ -79,29 +103,39 @@ namespace ConsoleAppProject.App02
             Console.WriteLine();
             double height = ConsoleHelper.InputDecimal(" Enter Your Height In Inches > ");
             Console.WriteLine();
+            CalculateImperial( weight, height);
+
+            return weight;
+        }
+
+
+        public double CalculateImperial(double weight, double height)
+        {
             bmi = (weight * 703) / (height * height);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($" Your BMI is: {bmi}");
+            Console.WriteLine($" Your BMI is: {bmi:f2}");
             Console.WriteLine();
             BMIResult();
 
             return bmi;
         }
 
+
+
         private string BMIResult()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            if (bmi < 18.5)
+            if (bmi < UNDERWIGHT)
             {
                 Console.WriteLine(" You are underweight.");
             }
-            else if (bmi < 25)
+            else if (bmi < HEALTHY)
             {
                 Console.WriteLine(" You are at a healthy weight.");
             }
-            else if (bmi < 30)
+            else if (bmi < OVERWEIGHT)
             {
                 Console.WriteLine(" You are overweight.");
             }
@@ -110,11 +144,16 @@ namespace ConsoleAppProject.App02
                 Console.WriteLine(" You are obese.");
             }
 
+            Console.ForegroundColor = ConsoleColor.Red;
+            ConsoleHelper.OutputTitle("If Your Black, Asian or Other Minority \n Ethnic Groups, You Have A Higher Risk \n Adults 23.0 Or More Are At Increased Risk \n Adults 27.5 Or More Are At High Risk");
+
             Console.ReadLine();
             return null;
 
             
         }
+
+
              
 
     }

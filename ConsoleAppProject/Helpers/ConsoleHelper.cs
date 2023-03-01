@@ -163,6 +163,11 @@ namespace ConsoleAppProject.Helpers
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
+            for (int count = 0; count <= title.Length; count++)
+            {
+                Console.Write("-");
+            }
+
             Console.WriteLine($"\n {title}");
             Console.Write(" ");
 

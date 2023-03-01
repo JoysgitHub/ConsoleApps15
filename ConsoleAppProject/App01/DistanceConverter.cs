@@ -91,6 +91,8 @@ namespace ConsoleAppProject.App01
             Console.ForegroundColor = ConsoleColor.Green;
             OutputDistance();
             Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ReadLine();
+
         }
 
         //-------------unit Selection-----------------------------
