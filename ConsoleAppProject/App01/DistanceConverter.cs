@@ -75,13 +75,7 @@ namespace ConsoleAppProject.App01
         ///This is the first method that is called in the distance converter.
         ///First this method starts a while loop that outputs the distance converter menu and allows the 
         ///user to either convert a distance or exit the app.
-        ///Then this method outputs a heading and then prompts the user to input 
-        ///a number between 1-6. This method also uses the console.helper to validate the user input
-        ///if the user inputs any thing oter ten 1-6, it displays an error message.
-        ///after the user selects a unit, it propts the user to input a distance they want to convert.
-        ///after the user inputs the distance it uses the calculate method and outputs the distance.
-        ///
-
+        
         public void ConvertDistance()
         {
            bool repeat = true;
@@ -114,6 +108,12 @@ namespace ConsoleAppProject.App01
 
         }
 
+        //This method outputs a heading and then prompts the user to input
+        ///a number between 1-6. This method also uses the console.helper to validate the user input
+        ///if the user inputs any thing oter ten 1-6, it displays an error message.
+        ///after the user selects a unit, it propts the user to input a distance they want to convert.
+        ///after the user inputs the distance it uses the calculate method and outputs the distance.
+        ///
         private void MainConverter()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;

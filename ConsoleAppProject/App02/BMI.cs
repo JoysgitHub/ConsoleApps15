@@ -20,9 +20,15 @@ namespace ConsoleAppProject.App02
 
         public const double UNDERWIGHT = 18.5;
 
-        public const int HEALTHY = 25;
+        public const double HEALTHY = 24.9;
 
-        public const int OVERWEIGHT = 30;
+        public const double OVERWEIGHT = 29.9;
+
+        public const double OBESEI = 34.9;
+
+        public const double OBESEII = 39.9;
+
+
 
         ///This is the first function that is called in the BMI program.
         ///This method outputs the program heading and then calls the select unit
@@ -165,9 +171,17 @@ namespace ConsoleAppProject.App02
             {
                 Console.WriteLine(" You Are Overweight.");
             }
+            else if (bmi < OBESEI)
+            {
+                Console.WriteLine(" You Are Obese Class I.");
+            }
+            else if (bmi < OBESEII)
+            {
+                Console.WriteLine(" You Are Obese Class II.");
+            }
             else
             {
-                Console.WriteLine(" You Are Obese.");
+                Console.WriteLine(" You Are Obese Class III.");
             }
 
             Console.ForegroundColor = ConsoleColor.Red;
