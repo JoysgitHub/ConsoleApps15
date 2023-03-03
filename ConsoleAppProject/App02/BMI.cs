@@ -15,7 +15,7 @@ namespace ConsoleAppProject.App02
     /// </author>
     public class BMI
     {
-        
+
         //constants used to determine the condition of the user.
 
         public const double UNDERWIGHT = 18.5;
@@ -27,8 +27,6 @@ namespace ConsoleAppProject.App02
         public const double OBESEI = 34.9;
 
         public const double OBESEII = 39.9;
-
-
 
         ///This is the first function that is called in the BMI program.
         ///This method outputs the program heading and then calls the select unit
@@ -129,7 +127,7 @@ namespace ConsoleAppProject.App02
             double heightFT = ConsoleHelper.InputDecimal(" Enter Your Height In Feet> ");
             double heightIN = ConsoleHelper.InputDecimal(" Enter The Remaining Inches Of Your Height > ");
             Console.WriteLine();
-            CalculateImperial( weight, heightFT, heightIN);
+            CalculateImperial(weight, heightFT, heightIN);
 
             return weight;
         }
@@ -139,7 +137,7 @@ namespace ConsoleAppProject.App02
         ///And then calls the BMIresult method to determine the conditon of the user using the bmi variable.
         public double CalculateImperial(double weight, double heightFT, double heightIN)
         {
-            double heightFeet = (heightFT * 12) + heightIN;            
+            double heightFeet = (heightFT * 12) + heightIN;
             double bmi = weight * 703 / (heightFeet * heightFeet);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
@@ -154,7 +152,7 @@ namespace ConsoleAppProject.App02
         ///The BMIResult method uses conditional statements to check if the BMI calculated is 
         ///under, healthy or overweight after which it outputs a message informing the user of 
         ///their condition. It also outputs a message for the BAME users at the end.
-        
+
         private string BMIResult(double bmi)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -190,11 +188,11 @@ namespace ConsoleAppProject.App02
             Console.ReadLine();
             return null;
 
-            
+
         }
 
 
-             
+
 
     }
 }
