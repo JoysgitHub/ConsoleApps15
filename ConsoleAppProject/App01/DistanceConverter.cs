@@ -322,7 +322,7 @@ namespace ConsoleAppProject.App01
         private void OutputDistance()
         {
             Console.WriteLine();
-            Console.WriteLine($" {fromDistance} {fromUnit} is {toDistance} {toUnit} !");
+            Console.WriteLine($" {fromDistance} {fromUnit} is {toDistance:f2} {toUnit} !");
             Console.WriteLine();
         }
 

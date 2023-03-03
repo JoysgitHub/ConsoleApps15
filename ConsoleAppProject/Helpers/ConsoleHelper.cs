@@ -50,24 +50,6 @@ namespace ConsoleAppProject.Helpers
             }
         }
 
-
-        /// <summary>
-        /// This displays all the available choices in a numbered
-        /// list, starting at 1
-        /// </summary>
-        public static void OnlyDisplayChoices(string[] choices)
-        {
-            int choiceNo = 0;
-
-            foreach (string choice in choices)
-            {
-                choiceNo++;
-                Console.WriteLine($"    {choiceNo}.  {choice}");
-            }
-            Console.WriteLine();
-        }
-
-
         /// <summary>
         /// This method will display a prompt to the user and
         /// will return any number as a double.  Any exception

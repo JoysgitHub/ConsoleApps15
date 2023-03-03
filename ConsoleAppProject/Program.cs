@@ -41,11 +41,7 @@ namespace ConsoleAppProject
             {
                 BMI calculator = new BMI();
                 calculator.BMICalculator();
-            }
-            else
-            {
-                Console.WriteLine(" Invalid Choice");
-            }
+            }            
         }
     }
 }
