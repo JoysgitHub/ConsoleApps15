@@ -15,7 +15,11 @@ namespace ConsoleAppProject
     /// Derek Peacock 05/02/2022
     /// </summary>
     public static class Program
-    {
+    {   
+        ///This is the main method fo the program.
+        ///This method outputs the heading and displays the main menu.
+        ///The main menu displays the choices and prompts the user to 
+        ///input either 1 or 2 and opens the apps.
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Blue;

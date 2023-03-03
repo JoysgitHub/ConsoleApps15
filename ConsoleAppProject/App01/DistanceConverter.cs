@@ -72,8 +72,13 @@ namespace ConsoleAppProject.App01
 
         private string fromUnit;
 
-        ///Prompt the user to enter the distance in miles
-        ///Input the mukes as a double number
+        ///This is the first method that is called in the distance converter.
+        ///First this method outputs a heading and then prompts the user to input 
+        ///a number between 1-6. This method also uses the console.helper to validate the user input
+        ///if the user inputs any thing oter ten 1-6, it displays an error message.
+        ///after the user selects a unit, it propts the user to input a distance they want to convert.
+        ///after the user inputs the distance it uses the calculate method and outputs the distance.
+        ///
 
         public void ConvertDistance()
         {
@@ -97,6 +102,11 @@ namespace ConsoleAppProject.App01
 
         //-------------unit Selection-----------------------------
 
+        ///the SelectUnit method displays the choices by calling the DisplayChoices method. 
+        ///after the user selects the unit, it calls the execute method which uses if statments
+        ///to match the number entered with the unit and outputs the unit to alert the user 
+        ///of their choice.
+
         private string SelectUnit(string prompt)
         {
 
@@ -111,6 +121,8 @@ namespace ConsoleAppProject.App01
         }
         //-----------execute choice-----------------------
 
+        ///This method uses conditional statements to match the unit 
+        ///with the number entered.
         private static string ExecuteChoice(string choice)
         {
             if (choice.Equals("1"))
@@ -145,6 +157,9 @@ namespace ConsoleAppProject.App01
 
 
         //------------display choice--------------------------
+        ///This method displays the unit of measurement choices, using the console.helpers.SelectChoice method
+        ///this method also prompts the user to  input a number between1-6 and reads the input and returns it to the
+        ///DisplayChoices method.
         private static string DisplayChoices()
         {
            
@@ -159,7 +174,11 @@ namespace ConsoleAppProject.App01
 
 
         //-----------------Input-----------------
-
+        ///This method allows the user to input the distace they want to be converted.
+        ///It uses the InputDecimal method in Console.Helpers to validate the input by
+        ///forcing the user to input either a Integar or a double. And then returns it to the 
+        ///ConvertDistance function and that assigns it to the fromDistance variable to be processed
+        ///by the calculateDistance function.
         private double InputDistance(string prompt)
         {
             double value = ConsoleHelper.InputDecimal(prompt);
@@ -169,6 +188,8 @@ namespace ConsoleAppProject.App01
 
 
         //------------------Calculate------------------------
+        ///The calculate distance function uses conditinal statements to match the user 
+        ///units to the correct calculation and assigns it to the toDistance variable.
 
         private void CalculateDistance()
         {
@@ -296,7 +317,8 @@ namespace ConsoleAppProject.App01
 
 
         //-------------------Outputs--------------
-
+        ///This function outputs the final calculated distance along with the units
+        ///and the orignial distance input.
         private void OutputDistance()
         {
             Console.WriteLine();

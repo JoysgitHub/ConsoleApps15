@@ -5,7 +5,10 @@ using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App02
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// This app will allow the user to choose either imperial or metric units after which it 
+    /// will prompt the user to input thier height and weight in the chosen units and then calculate
+    /// their BMI(Body Mass Index) and tell the user if they are underweight, healthy, overweight 
+    /// or Obese.
     /// </summary>
     /// <author>
     /// Student Name version 0.1
@@ -13,8 +16,8 @@ namespace ConsoleAppProject.App02
     public class BMI
     {
 
-        //private string unitChoice;
-        private double bmi;
+        
+        //private double bmi;
 
         public const double UNDERWIGHT = 18.5;
 
@@ -129,19 +132,19 @@ namespace ConsoleAppProject.App02
 
             if (bmi < UNDERWIGHT)
             {
-                Console.WriteLine(" You are underweight.");
+                Console.WriteLine(" You Are Underweight.");
             }
             else if (bmi < HEALTHY)
             {
-                Console.WriteLine(" You are at a healthy weight.");
+                Console.WriteLine(" You Are At A Healthy Weight.");
             }
             else if (bmi < OVERWEIGHT)
             {
-                Console.WriteLine(" You are overweight.");
+                Console.WriteLine(" You Are Overweight.");
             }
             else
             {
-                Console.WriteLine(" You are obese.");
+                Console.WriteLine(" You Are Obese.");
             }
 
             Console.ForegroundColor = ConsoleColor.Red;
