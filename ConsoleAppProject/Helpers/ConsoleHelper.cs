@@ -128,10 +128,10 @@ namespace ConsoleAppProject.Helpers
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
 
-            Console.WriteLine("\n ---------------------------------------------");
+            Console.WriteLine("\n =============================================");
             Console.WriteLine($"    {heading}          ");
             Console.WriteLine("     by Joyson Cardoso           ");
-            Console.WriteLine(" ---------------------------------------------" +
+            Console.WriteLine(" =============================================" +
                 "\n");
 
             
@@ -188,8 +188,6 @@ namespace ConsoleAppProject.Helpers
 
                 }
             }
-
-            //return Convert.ToDouble(value);
         }
     }
 }
