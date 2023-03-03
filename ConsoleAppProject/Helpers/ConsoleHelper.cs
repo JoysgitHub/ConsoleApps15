@@ -173,7 +173,7 @@ namespace ConsoleAppProject.Helpers
             {
                 Console.Write(prompt);
                 string value = Console.ReadLine();
-                if (double.TryParse(value, out double num1))
+                if (double.TryParse(value, out double num1) && num1 > -1)
                 {
                     return Convert.ToDouble(value);
                     break;
