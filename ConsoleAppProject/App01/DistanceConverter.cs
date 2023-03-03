@@ -82,23 +82,52 @@ namespace ConsoleAppProject.App01
 
         public void ConvertDistance()
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            ConsoleHelper.OutputHeading("Distance Converter");
-            fromUnit = SelectUnit(" Please select the from distance unit > ");
-            toUnit = SelectUnit(" Please select the to distance unit> ");
+           bool repeat = true;
+           while(repeat)
+            {
+                ConsoleHelper.OutputTitle("Distance Converter Menu:");
+                string choiceReapeater = DisplayMenu();               
+                Console.WriteLine(" ---------------------------------------------");
 
-            Console.WriteLine($" Converting {fromUnit} to  {toUnit}");
-            Console.WriteLine($" ---------------------------------------------");
+                if (choiceReapeater == "1")
+                {
+                    
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    ConsoleHelper.OutputHeading("Distance Converter");
+                    fromUnit = SelectUnit(" Please select the from distance unit > ");
+                    toUnit = SelectUnit(" Please select the to distance unit> ");
 
-            fromDistance = InputDistance($" Please enter the number of {fromUnit} > ");
+                    Console.WriteLine($" Converting {fromUnit} to  {toUnit}");
+                    Console.WriteLine($" ---------------------------------------------");
 
-            CalculateDistance();
-            Console.ForegroundColor = ConsoleColor.Green;
-            OutputDistance();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.ReadLine();
+                    fromDistance = InputDistance($" Please enter the number of {fromUnit} > ");
+
+                    CalculateDistance();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    OutputDistance();
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ReadLine();
+                }
+                else
+                {
+                    repeat = false;
+                }                
+            }          
 
         }
+
+        ///This function dispays the menu that allows the user to either convert another value
+        ///or exit the distance converter.
+        private string DisplayMenu()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            string[] choiceRepeat = { "Convert Distance", "Exit", };
+            int repeatChoice = ConsoleHelper.SelectChoice(choiceRepeat);
+            return Convert.ToString(repeatChoice);
+
+        }
+
+
 
         //-------------unit Selection-----------------------------
 
@@ -219,11 +248,11 @@ namespace ConsoleAppProject.App01
             }
             else if (fromUnit == METERS && toUnit == KILOMETERS)
             {
-                toDistance = fromDistance * METERS_IN_KILOMETERS;
+                toDistance = fromDistance / METERS_IN_KILOMETERS;
             }
             else if (fromUnit == KILOMETERS && toUnit == METERS)
             {
-                toDistance = fromDistance / METERS_IN_KILOMETERS;
+                toDistance = fromDistance * METERS_IN_KILOMETERS;
             }
             else if (fromUnit == KILOMETERS && toUnit == FEET)
             {
