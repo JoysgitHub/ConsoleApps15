@@ -79,7 +79,7 @@ namespace ConsoleAppProject.App02
             return null;
         }
 
-        //---------------------Adult Unit------------------------------
+        //--------------------- Unit------------------------------
         ///This method uses the ConsoleHelpers.SelectChoice method to display the menu and 
         ///prompts the user to input either 1 or 2 to select the units and then assigns the 
         ///output to the choice variable. The function then calls the ExecuteChoice method to
@@ -95,7 +95,7 @@ namespace ConsoleAppProject.App02
         }
         
         
-        //----------------------Adult Execute choice---------------------------
+        //---------------------- Execute choice---------------------------
         ///This method uses conditional statments to determine which units to use.
         ///If the user inputs 1 it calculates the BMI in metric units and if the user 
         ///inputs 2 it uses the Imerial units.
@@ -285,7 +285,7 @@ namespace ConsoleAppProject.App02
                 }
                 else
                 {
-                    Console.WriteLine(" You are in the 95th Percentile.You Are Obese.");
+                    Console.WriteLine(" You are in the 95th Percentile.You Are Obese!!!");
                 }
             }
             else
@@ -308,10 +308,9 @@ namespace ConsoleAppProject.App02
                 }
                 else
                 {
-                    Console.WriteLine(" You are in the 95th Percentile.You Are Obese.");
+                    Console.WriteLine(" You are in the 95th Percentile.You Are Obese!!!");
                 }
             }
-            Console.ForegroundColor = ConsoleColor.Red;
             ConsoleHelper.OutputTitle("If Your Black, Asian or Other Minority \n Ethnic Groups, You Have A Higher Risk \n Children 85th Or More Percentile Are At Increased Risk \n Children 95th Or More Percentile Are At High Risk");
             Console.ReadLine();
             return bmi;
