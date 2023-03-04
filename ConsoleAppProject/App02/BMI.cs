@@ -32,15 +32,9 @@ namespace ConsoleAppProject.App02
 
         public string adult;
 
-        //Child Condition Constants
+        public double age;
 
-        public const double CHILDUNDERWIGHT = 4;
-
-        public const double CHILDHEALTHY = 84;
-
-        public const double CHILDOVERWEIGHT = 94;
-               
-
+     
 
         ///This is the first function that is called in the BMI program.
         ///This method outputs the program heading and then calls the select unit
@@ -67,7 +61,7 @@ namespace ConsoleAppProject.App02
             if (adultOrChild == 1)
             {
                 ConsoleHelper.OutputTitle("----You Have chosen Adult------");
-                adult = "1";
+                adult = "1";               
                 SelectUnit();             
 
             }
@@ -75,6 +69,9 @@ namespace ConsoleAppProject.App02
             {
                 ConsoleHelper.OutputTitle("----You Have chosen Child------");
                 adult = "2";
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                age = ConsoleHelper.InputDecimal("Please Enter The Age Of Your Child> ");
+                Console.WriteLine();
                 SelectUnit();               
                 
             }
@@ -162,12 +159,12 @@ namespace ConsoleAppProject.App02
 
             if (adult == "1")
             {
-                Console.WriteLine($" Your BMI is: {bmi:f2}");
+                ConsoleHelper.OutputTitle($" Your BMI is: {bmi:f2}");
                 BMIResult(bmi);
             }
             else
             {
-                Console.WriteLine($" Your BMI is: {bmi:f2} Percentile");
+                ConsoleHelper.OutputTitle($" Your BMI is: {bmi:f2}");
                 BMIChildResult(bmi);
             }
             return bmi;
@@ -185,8 +182,7 @@ namespace ConsoleAppProject.App02
             double weight = ConsoleHelper.InputDecimal(" Enter Your Weight In Pounds > ");
             Console.WriteLine();
             double heightFT = ConsoleHelper.InputDecimal(" Enter Your Height In Feet> ");
-            double heightIN = ConsoleHelper.InputDecimal(" Enter The Remaining Inches Of Your Height > ");
-            Console.WriteLine();
+            double heightIN = ConsoleHelper.InputDecimal(" Enter The Remaining Inches Of Your Height > ");           
             CalculateImperial(weight, heightFT, heightIN);
 
             return weight;
@@ -199,17 +195,15 @@ namespace ConsoleAppProject.App02
         {
             double heightFeet = (heightFT * 12) + heightIN;
             double bmi = weight * 703 / (heightFeet * heightFeet);
-            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;            
-            Console.WriteLine();
             if (adult == "1")
             {
-                Console.WriteLine($" Your BMI is: {bmi:f2}");
+                ConsoleHelper.OutputTitle($" Your BMI is: {bmi:f2}");
                 BMIResult(bmi);
             }
             else
             {
-                Console.WriteLine($" Your BMI is: {bmi:f2} Percentile");
+                ConsoleHelper.OutputTitle($" Your BMI is: {bmi:f2}");
                 BMIChildResult(bmi);
             }
             return bmi;
@@ -255,31 +249,72 @@ namespace ConsoleAppProject.App02
             return null;
         }
 
-        private string BMIChildResult(double bmi)
+        private double BMIChildResult(double bmi)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-            if (bmi < CHILDUNDERWIGHT)
+            if (age < 2)
             {
-                Console.WriteLine(" You Are Underweight.");
+                if (bmi < 13.5)
+                {
+                    Console.WriteLine("You are in the 1st to 4th Percentile. You Are Underweight.");
+                }
+                else if (bmi >= 13.5 && bmi < 15)
+                {
+                    Console.WriteLine(" You are in the 5th Percentile. You Are At A Healthy Weight.");
+                }
+                else if (bmi >= 15 && bmi < 16)
+                {
+                    Console.WriteLine(" You are in the 10th Percentile.You Are At A Healthy Weight.");
+                }
+                else if (bmi >= 16 && bmi < 17)
+                {
+                    Console.WriteLine("You are in the 25th Percentile. You Are At A Healthy Weight.");
+                }
+                else if (bmi >= 17 && bmi < 18)
+                {
+                    Console.WriteLine(" You are in the 50th Percentile.You Are At A Healthy Weight.");
+                }
+                else if (bmi >= 18 && bmi < 19)
+                {
+                    Console.WriteLine(" You are in the 75th Percentile.You Are At A Healthy Weight.");
+                }
+                else if (bmi >= 19 && bmi < 20)
+                {
+                    Console.WriteLine(" You are in the 90th Percentile.You Are Overweight.");
+                }
+                else
+                {
+                    Console.WriteLine(" You are in the 95th Percentile.You Are Obese.");
+                }
             }
-            else if (bmi < CHILDHEALTHY)
-            {
-                Console.WriteLine(" You Are At A Healthy Weight.");
-            }
-            else if (bmi < CHILDOVERWEIGHT)
-            {
-                Console.WriteLine(" You Are Overweight.");
-            }            
             else
             {
-                Console.WriteLine(" You Are Obese .");
+                if (bmi < 15)
+                {
+                    Console.WriteLine(" You are in the 1-4th Percentile.You Are Underweight.");
+                }
+                else if (bmi >= 15 && bmi < 18.5)
+                {
+                    Console.WriteLine(" You are in the 5th Percentile.You Are At A Healthy Weight.");
+                }
+                else if (bmi >= 18.5 && bmi < 25)
+                {
+                    Console.WriteLine(" You are in the 50-84th Percentile.You Are At A Healthy Weight.");
+                }
+                else if (bmi >= 25 && bmi < 30)
+                {
+                    Console.WriteLine(" You are in the 85th Percentile.You Are Overweight.");
+                }
+                else
+                {
+                    Console.WriteLine(" You are in the 95th Percentile.You Are Obese.");
+                }
             }
-
             Console.ForegroundColor = ConsoleColor.Red;
             ConsoleHelper.OutputTitle("If Your Black, Asian or Other Minority \n Ethnic Groups, You Have A Higher Risk \n Children 85th Or More Percentile Are At Increased Risk \n Children 95th Or More Percentile Are At High Risk");
             Console.ReadLine();
-            return null;
+            return bmi;
         }
-    }
+    }   
 }
