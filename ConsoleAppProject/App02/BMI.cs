@@ -4,7 +4,7 @@ using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject.App02
 {
-    /// <summary>
+    /// <summary> 
     /// This app will allow the user to choose either imperial or metric units after which it 
     /// will prompt the user to input thier height and weight in the chosen units and then calculate
     /// their BMI(Body Mass Index) and tell the user if they are underweight, healthy, overweight 
@@ -13,6 +13,8 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Student Name version 0.1
     /// </author>
+    /// 
+
     public class BMI
     {
 
@@ -28,6 +30,18 @@ namespace ConsoleAppProject.App02
 
         public const double OBESEII = 39.9;
 
+        public string adult;
+
+        //Child Condition Constants
+
+        public const double CHILDUNDERWIGHT = 4;
+
+        public const double CHILDHEALTHY = 84;
+
+        public const double CHILDOVERWEIGHT = 94;
+               
+
+
         ///This is the first function that is called in the BMI program.
         ///This method outputs the program heading and then calls the select unit
         ///method to allow the user to choose between Imperial and Metric units.
@@ -35,23 +49,56 @@ namespace ConsoleAppProject.App02
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             ConsoleHelper.OutputHeading("BMI Calculator");
-            SelectUnit();
+            AdultOrChild();            
         }
 
+        public string AdultOrChild()
+        {
+            string[] choices = { "Adult", "Child", };
+            int adultOrChild = ConsoleHelper.SelectChoice(choices);
+            ExecuteAdultOrChild(adultOrChild);
+
+            return Convert.ToString(adultOrChild);
+        }
+
+        ///This method uses a con
+        public string ExecuteAdultOrChild(int adultOrChild)
+        {
+            if (adultOrChild == 1)
+            {
+                ConsoleHelper.OutputTitle("----You Have chosen Adult------");
+                adult = "1";
+                SelectUnit();             
+
+            }
+            else
+            {
+                ConsoleHelper.OutputTitle("----You Have chosen Child------");
+                adult = "2";
+                SelectUnit();               
+                
+            }
+
+            return null;
+        }
+
+        //---------------------Adult Unit------------------------------
         ///This method uses the ConsoleHelpers.SelectChoice method to display the menu and 
         ///prompts the user to input either 1 or 2 to select the units and then assigns the 
         ///output to the choice variable. The function then calls the ExecuteChoice method to
         ///determine which units to use.
         private string SelectUnit()
         {
-
+            Console.ForegroundColor= ConsoleColor.Cyan;
             string[] choices = { "Metric Units", "Imperial Units", };
             int choice = ConsoleHelper.SelectChoice(choices);
             ExecuteChoice(choice);
             return null;
 
         }
-
+        
+        
+        //----------------------Adult Execute choice---------------------------
         ///This method uses conditional statments to determine which units to use.
         ///If the user inputs 1 it calculates the BMI in metric units and if the user 
         ///inputs 2 it uses the Imerial units.
@@ -78,6 +125,9 @@ namespace ConsoleAppProject.App02
             return null;
         }
 
+       
+       
+        //--------------------------Input Metric----------------------
         ///This method is called if the user choses the metric units. It used the ConsoleHelper.InputDecimal
         ///method to validate the input by forcing the user to input either a Integar or a double. 
         ///this method also prints an error message if the user inputs anythig other then a number.
@@ -91,10 +141,12 @@ namespace ConsoleAppProject.App02
             double heightCM = ConsoleHelper.InputDecimal(" Enter Your Height In Centimeters > ");
             Console.WriteLine();
             CalculateMetric(weight, heightCM);
-
-
+           
             return weight;
         }
+            
+           
+        
 
         ///The calculateMetric is called if the choses the metric system.
         ///This method converts the height from centimeters to meters and then
@@ -105,15 +157,23 @@ namespace ConsoleAppProject.App02
             double height = heightCM / 100;
             double bmi = weight / (height * height);
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($" Your BMI is: {bmi:f2}");
+            Console.ForegroundColor = ConsoleColor.Green;            
             Console.WriteLine();
-            BMIResult(bmi);
 
+            if (adult == "1")
+            {
+                Console.WriteLine($" Your BMI is: {bmi:f2}");
+                BMIResult(bmi);
+            }
+            else
+            {
+                Console.WriteLine($" Your BMI is: {bmi:f2} Percentile");
+                BMIChildResult(bmi);
+            }
             return bmi;
         }
 
-
+       
         ///This method is called if the user choses the imperial units. It used the ConsoleHelper.InputDecimal
         ///method to validate the input by forcing the user to input either a Integar or a double. 
         ///this method also prints an error message if the user inputs anythig other then a number.
@@ -140,11 +200,18 @@ namespace ConsoleAppProject.App02
             double heightFeet = (heightFT * 12) + heightIN;
             double bmi = weight * 703 / (heightFeet * heightFeet);
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($" Your BMI is: {bmi:f2}");
+            Console.ForegroundColor = ConsoleColor.Green;            
             Console.WriteLine();
-            BMIResult(bmi);
-
+            if (adult == "1")
+            {
+                Console.WriteLine($" Your BMI is: {bmi:f2}");
+                BMIResult(bmi);
+            }
+            else
+            {
+                Console.WriteLine($" Your BMI is: {bmi:f2} Percentile");
+                BMIChildResult(bmi);
+            }
             return bmi;
         }
 
@@ -184,15 +251,35 @@ namespace ConsoleAppProject.App02
 
             Console.ForegroundColor = ConsoleColor.Red;
             ConsoleHelper.OutputTitle("If Your Black, Asian or Other Minority \n Ethnic Groups, You Have A Higher Risk \n Adults 23.0 Or More Are At Increased Risk \n Adults 27.5 Or More Are At High Risk");
-
             Console.ReadLine();
             return null;
-
-
         }
 
+        private string BMIChildResult(double bmi)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
+            if (bmi < CHILDUNDERWIGHT)
+            {
+                Console.WriteLine(" You Are Underweight.");
+            }
+            else if (bmi < CHILDHEALTHY)
+            {
+                Console.WriteLine(" You Are At A Healthy Weight.");
+            }
+            else if (bmi < CHILDOVERWEIGHT)
+            {
+                Console.WriteLine(" You Are Overweight.");
+            }            
+            else
+            {
+                Console.WriteLine(" You Are Obese .");
+            }
 
-
+            Console.ForegroundColor = ConsoleColor.Red;
+            ConsoleHelper.OutputTitle("If Your Black, Asian or Other Minority \n Ethnic Groups, You Have A Higher Risk \n Children 85th Or More Percentile Are At Increased Risk \n Children 95th Or More Percentile Are At High Risk");
+            Console.ReadLine();
+            return null;
+        }
     }
 }
