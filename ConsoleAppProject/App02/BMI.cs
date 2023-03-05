@@ -61,8 +61,9 @@ namespace ConsoleAppProject.App02
             if (adultOrChild == 1)
             {
                 ConsoleHelper.OutputTitle("----You Have chosen Adult------");
-                adult = "1";               
-                SelectUnit();             
+                adult = "1";
+                SelectUnit();
+
 
             }
             else
@@ -234,7 +235,7 @@ namespace ConsoleAppProject.App02
             {
                 Console.WriteLine(" You Are Obese Class I.");
             }
-            else if (bmi < OBESEII)
+            else if (bmi <= OBESEII)
             {
                 Console.WriteLine(" You Are Obese Class II.");
             }
