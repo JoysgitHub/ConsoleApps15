@@ -43,9 +43,11 @@ namespace ConsoleAppProject.App02
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             ConsoleHelper.OutputHeading("BMI Calculator");
-            AdultOrChild();            
+            AdultOrChild();    
+            
         }
 
+        ///This method allows to user to choose between adult or child
         public string AdultOrChild()
         {
             string[] choices = { "Adult", "Child", };
@@ -55,7 +57,8 @@ namespace ConsoleAppProject.App02
             return Convert.ToString(adultOrChild);
         }
 
-        ///This method uses a con
+        ///This method uses conditional statments that allows to user to to execute the right
+        ///calculator depending on their input
         public string ExecuteAdultOrChild(int adultOrChild)
         {
             if (adultOrChild == 1)
@@ -250,6 +253,8 @@ namespace ConsoleAppProject.App02
             return null;
         }
 
+        ///This method uses conditional statment that takes the calculated BMI and converts
+        ///it to a percentile for the child BMI.
         private double BMIChildResult(double bmi)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
