@@ -11,7 +11,8 @@ namespace ConsoleAppProject.App03
     ///student names and prints the marks and calulates the grades.
     /// </summary>
     public class StudentGrades
-    {         //Constants (Grade Boundaries)
+    {   
+        //Constants (Grade Boundaries)
         public const int LowestMark = 0;
         public const int LowestGradeD = 40;
         public const int LowestGradeC = 50;
@@ -47,6 +48,11 @@ namespace ConsoleAppProject.App03
             CalculatedGrades = new Grades[Marks.Length];
         }
 
+        /// <summary>
+        /// This is the first function that is called when the student 
+        /// grade program starts. It outputs the App heading and calls
+        /// the main menu function.
+        /// </summary>
         public void StudentGradesMain()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -56,7 +62,8 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// Select function
+        /// This function prints the main student grade menu and prompts the user 
+        /// to select a choice from the menu and calls the execute choice function.
         /// </summary>
         /// <returns></returns>
         private string MainMenu()
@@ -70,6 +77,11 @@ namespace ConsoleAppProject.App03
 
         }
 
+        /// <summary>
+        /// This method uses conditional statments and calls a function depending on the user choice.
+        /// </summary>
+        /// <param name="choice"></param>
+        /// <returns></returns>
         private string ExecuteChoice(int choice)
         {
             if (choice == 1)
@@ -119,7 +131,9 @@ namespace ConsoleAppProject.App03
             return null;
         }
 
-
+        /// <summary>
+        /// This method is used to add a new student to the Students array.
+        /// </summary>
         public void AddStudent()
         {
             Console.Write($" Enter the name of the student >  ");
@@ -143,6 +157,10 @@ namespace ConsoleAppProject.App03
             MainMenu();
         }
 
+        /// <summary>
+        /// This method converts the marks to a grade and stores it in the
+        /// CalculatedGrade array.
+        /// </summary>
         public void CalculateGrade()
         {
             for (int i = 0; i < Marks.Length; i++)
@@ -158,7 +176,7 @@ namespace ConsoleAppProject.App03
 
         ///<summary>
         ///List all the students and display their 
-        ///name and current mark
+        ///name, current mark and the calculated grade.
         ///</Summary>
         public void OutputMarks()
           {
@@ -172,7 +190,6 @@ namespace ConsoleAppProject.App03
                     Console.WriteLine($" {j}) {Students[i]}: Marks: {Marks[i]} is Grade {CalculatedGrades[i]}");
                     j++;
                 }
-
                 MainMenu();
         }         
 
@@ -228,8 +245,10 @@ namespace ConsoleAppProject.App03
             Console.WriteLine($" Mean: {Mean} \n Minimum Mark: {Minimum} \n Maximum Mark: {Maximum}");
             MainMenu();
         }
-            ///<summary>
-
+        
+        /// <summary>
+        /// This calculates the grade profile based on the marks.
+        /// </summary>
         public void CalculateGradeProfile()
         {
             for (int i = 0; i < GradeProfile.Length; i++)
@@ -245,6 +264,9 @@ namespace ConsoleAppProject.App03
             OutputGradeProfile();
         }   
 
+        /// <summary>
+        /// This method outputs the grade profile calculated in the CalculateGradeProfile.
+        /// </summary>
         public void OutputGradeProfile()
         {
             Grades grade = Grades.F;
