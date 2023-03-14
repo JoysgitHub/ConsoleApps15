@@ -7,8 +7,8 @@ using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App03
 {
     /// <summary>
-    /// At the moment this class just tests the
-    /// Grades enumeration names and descriptions
+    ///This class allows the user to enter grades against pre entered
+    ///student names and prints the marks and calulates the grades.
     /// </summary>
     public class StudentGrades
     {         //Constants (Grade Boundaries)
@@ -35,8 +35,8 @@ namespace ConsoleAppProject.App03
             Students = new string[]
             {
              "Emily", "Joshua", "Sophia",
-             //"Ethan", "Isabella", "Liam",
-             //"Mia", "Oliver", "Ava",
+             "Ethan", "Isabella", "Liam",
+             "Mia", "Oliver", "Ava",
              "Benjamin"
             }; 
 
@@ -63,7 +63,7 @@ namespace ConsoleAppProject.App03
         {
             ConsoleHelper.OutputTitle("-------Main Menu-------");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            string[] choices = { "Input Marks", "Output Marks","Output Stats","Output Grade Profile","Exit" };
+            string[] choices = { "Add Student","Input Marks", "Output Marks","Output Stats","Output Grade Profile","Exit" };
             int choice = ConsoleHelper.SelectChoice(choices);
             ExecuteChoice(choice);
             return null;
@@ -76,12 +76,22 @@ namespace ConsoleAppProject.App03
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(" Add Student selected");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine();
+                AddStudent();
+
+            }
+            else if (choice == 2)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(" Input Marks selected");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 InputMarks();
-
             }
-            else if (choice == 2) 
+
+            else if (choice == 3) 
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -89,7 +99,7 @@ namespace ConsoleAppProject.App03
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 OutputMarks();
             }
-            else if (choice == 3)
+            else if (choice == 4)
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -97,7 +107,7 @@ namespace ConsoleAppProject.App03
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 CalculateStats();
             }
-            else if (choice == 4)
+            else if (choice == 5  )
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -109,6 +119,15 @@ namespace ConsoleAppProject.App03
             return null;
         }
 
+
+        public void AddStudent()
+        {
+            Console.Write($"Enter the name of the student >  ");
+            Students[0] = Console.ReadLine();
+
+            MainMenu();
+        }
+
         ///<Summary>        
         ///Input a mark between 0-100 for each 
         ///student and store it in the Marks array
@@ -118,8 +137,8 @@ namespace ConsoleAppProject.App03
             Console.WriteLine();
             for (int i = 0; i < Students.Length; i++)
             {
-                Console.Write($"Enter the grade for {Students[i]}: ");
-                Marks[i] = int.Parse(Console.ReadLine());
+                Console.Write($"Enter the marks for {Students[i]} ");
+                Marks[i] = (int)ConsoleHelper.InputIntegar("> ");
             }
 
             MainMenu();
@@ -229,7 +248,7 @@ namespace ConsoleAppProject.App03
 
         public void OutputGradeProfile()
         {
-            Grades grade = Grades.A;
+            Grades grade = Grades.F;
             Console.WriteLine();
             foreach (int count in GradeProfile)
             {

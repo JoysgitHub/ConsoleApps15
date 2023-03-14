@@ -176,13 +176,40 @@ namespace ConsoleAppProject.Helpers
                 if (double.TryParse(value, out double num1) && num1 > -1)
                 {
                     return Convert.ToDouble(value);
-                    break;
+                    //break;
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine();
                     Console.WriteLine(" Please Enter An Integar or A Double");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// This method will ensure that the user inputs an 
+        /// integar.
+        /// </summary>
+        public static double InputIntegar(string prompt)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                string value = Console.ReadLine();
+                if (int.TryParse(value, out int num1) && num1 > -1)
+                {
+                    return Convert.ToInt32(value);
+                    //break;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine(" Please Enter An Integar");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Cyan;
 
