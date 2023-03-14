@@ -15,7 +15,15 @@ namespace ConsoleAppProject
     /// Derek Peacock 05/02/2022
     /// </summary>
     public static class Program
-    {   
+    {
+        public static StudentGrades StudentGrades
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         ///This is the main method fo the program.
         ///This method outputs the heading and displays the main menu.
         ///The main menu displays the choices and prompts the user to 

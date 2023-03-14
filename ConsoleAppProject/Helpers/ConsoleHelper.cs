@@ -24,6 +24,14 @@ namespace ConsoleAppProject.Helpers
             }
         }
 
+        public static App03.StudentGrades StudentGrades1
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// This method displays a list of numbered choices to the
         /// user, they can then select a choice and and the choice 
