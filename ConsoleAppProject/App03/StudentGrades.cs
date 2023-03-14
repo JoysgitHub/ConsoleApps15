@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App03
@@ -21,67 +22,173 @@ namespace ConsoleAppProject.App03
         public string[] Students { get; set; }
         public int[] Marks { get; set; }
         public int[] GradeProfile { get; set; }
+        public Grades[] CalculatedGrades { get; set; }
         public double Mean { get; set; }
         public int Minimum { get; set; }
         public int Maximum { get; set; }         
         /// <summary>
-                                                         /// Class Constructor called when an object 
-                                                         /// is created and sets up an array of students.
-                                                         /// </summary>
+        /// Class Constructor called when an object 
+        /// is created and sets up an array of students.
+        /// </summary>
         public StudentGrades()
         {
             Students = new string[]
             {
-             "Jacob", "Dion", "Christina",
-             "Alice", "Sam", "Daniel",
-             "Rocky", "Phebe", "Adi",
-             "Jamal"
+             "Emily", "Joshua", "Sophia",
+             //"Ethan", "Isabella", "Liam",
+             //"Mia", "Oliver", "Ava",
+             "Benjamin"
             }; 
+
             GradeProfile = new int[(int)Grades.A + 1];
+
             Marks = new int[Students.Length];
-        }         ///<Summary>
-                          ///Input a mark between 0-100 for each 
-                          ///student and store it in the Marks array
-                          ///</Summary>
+
+            CalculatedGrades = new Grades[Marks.Length];
+        }
+
+        public void StudentGradesMain()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            ConsoleHelper.OutputHeading("Student Grade App");
+            MainMenu();
+
+        }
+
+        /// <summary>
+        /// Select function
+        /// </summary>
+        /// <returns></returns>
+        private string MainMenu()
+        {
+            ConsoleHelper.OutputTitle("-------Main Menu-------");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            string[] choices = { "Input Marks", "Output Marks","Output Stats","Output Grade Profile","Exit" };
+            int choice = ConsoleHelper.SelectChoice(choices);
+            ExecuteChoice(choice);
+            return null;
+
+        }
+
+        private string ExecuteChoice(int choice)
+        {
+            if (choice == 1)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(" Input Marks selected");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                InputMarks();
+
+            }
+            else if (choice == 2) 
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(" Output Marks selected");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                OutputMarks();
+            }
+            else if (choice == 3)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(" Output Stats selected");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                CalculateStats();
+            }
+            else if (choice == 4)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(" Output Grade Profile");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                CalculateGradeProfile(); 
+            }
+
+            return null;
+        }
+
+        ///<Summary>        
+        ///Input a mark between 0-100 for each 
+        ///student and store it in the Marks array
+        ///</Summary>
         public void InputMarks()
         {
-            throw new NotImplementedException();
-        }         ///<summary>
-                          ///List all the students and display their 
-                          ///name and current mark
-                          ///</Summary>
-        public void OutputMarks()
+            Console.WriteLine();
+            for (int i = 0; i < Students.Length; i++)
+            {
+                Console.Write($"Enter the grade for {Students[i]}: ");
+                Marks[i] = int.Parse(Console.ReadLine());
+            }
+
+            MainMenu();
+        }
+
+        public void CalculateGrade()
         {
-            throw new NotImplementedException();
-        }         ///<summary>
-                          ///Convert a student mark to a grade
-                          ///from F (Fail) to A (First Class)
-                          ///</summary>
+            for (int i = 0; i < Marks.Length; i++)
+            {
+                Grades a = ConvertToGrade(Marks[i]);
+                CalculatedGrades[i] = a;
+            }
+            
+        }
+
+    
+
+
+        ///<summary>
+        ///List all the students and display their 
+        ///name and current mark
+        ///</Summary>
+        public void OutputMarks()
+          {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                CalculateGrade();
+                Console.WriteLine(" Student Marks:");
+                int j = 1;
+                for (int i = 0; i < Students.Length; i++)
+                {               
+                    Console.WriteLine($" {j}) {Students[i]}: Marks: {Marks[i]} is Grade {CalculatedGrades[i]}");
+                    j++;
+                }
+
+                MainMenu();
+        }         
+
+      
+        
+        ///<summary>
+        ///Convert a student mark to a grade
+        ///from F (Fail) to A (First Class)
+        ///</summary>
         public Grades ConvertToGrade(int mark)
         {
             if (mark >= 0 && mark < LowestGradeD)
             {
                 return Grades.F;
             }
-            else if (mark < 50)
+            else if (mark >= LowestGradeD && mark < LowestGradeC)                
             {
                 return Grades.D;
             }
-            else if (mark < 60)
+            else if (mark >= LowestGradeC && mark < LowestGradeB)
             {
                 return Grades.C;
             }
-            else if (mark < 70)
+            else if (mark >= LowestGradeB && mark < LowestGradeA)
             {
                 return Grades.B;
             }
-            else if (mark < 100)
+            else if (mark >= LowestGradeA && mark <= HighestMark)
             {
                 return Grades.A;
             }
-            else return Grades.A;
-            
-                
+            return Grades.F;
+
+
         }         
         ///<summary>                         
         ///Calculate and display the minimum, maximum                           
@@ -100,14 +207,10 @@ namespace ConsoleAppProject.App03
             }
            
             Mean = total / Marks.Length;
-            //double total = 0;
-            //foreach(int mark in Marks)
-            //{
-            //    total += mark;
-            //}
-            //Mean = total / Marks.Length;
+            Console.WriteLine($" Mean: {Mean} \n Minimum Mark: {Minimum} \n Maximum Mark: {Maximum}");
+            MainMenu();
         }
-        ///<summary>
+            ///<summary>
 
         public void CalculateGradeProfile()
         {
@@ -121,7 +224,20 @@ namespace ConsoleAppProject.App03
                 Grades grade = ConvertToGrade(mark);
                 GradeProfile[(int)grade]++;
             }
-
+            OutputGradeProfile();
         }   
+
+        public void OutputGradeProfile()
+        {
+            Grades grade = Grades.A;
+            Console.WriteLine();
+            foreach (int count in GradeProfile)
+            {
+                int percentage = count * 100 / Marks.Length;
+                Console.WriteLine($"Grade {grade} {percentage}% Count {count}");
+                grade++;
+            }
+            MainMenu(); 
+        }
     }
 }
