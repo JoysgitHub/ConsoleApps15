@@ -25,7 +25,16 @@ namespace ConsoleAppProject.App03
         public Grades[] CalculatedGrades { get; set; }
         public double Mean { get; set; }
         public int Minimum { get; set; }
-        public int Maximum { get; set; }         
+        public int Maximum { get; set; }
+
+        public Grades Grades
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// Class Constructor called when an object 
         /// is created and sets up an array of students.
@@ -124,7 +133,6 @@ namespace ConsoleAppProject.App03
         {
             Console.Write($"Enter the name of the student >  ");
             Students[0] = Console.ReadLine();
-
             MainMenu();
         }
 
