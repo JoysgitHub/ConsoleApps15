@@ -3,12 +3,9 @@
   <Class Name="ConsoleAppProject.App03.StudentGrades">
     <Position X="5.25" Y="1.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>gAIAgACAAAAAAAogAAiQAAQQAAAAQEEEAkYCAAEAAAA=</HashCode>
+      <HashCode>gAIAgACAAAAAAAogAAiQAAQQAAAAQEEEAkYCAAAAAAA=</HashCode>
       <FileName>App03\StudentGrades.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Grades" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="ConsoleAppProject.Helpers.ConsoleHelper">
     <Position X="2.5" Y="2.25" Width="1.5" />

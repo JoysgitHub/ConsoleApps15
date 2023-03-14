@@ -25,16 +25,7 @@ namespace ConsoleAppProject.App03
         public Grades[] CalculatedGrades { get; set; }
         public double Mean { get; set; }
         public int Minimum { get; set; }
-        public int Maximum { get; set; }
-
-        public Grades Grades
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
+        public int Maximum { get; set; }         
         /// <summary>
         /// Class Constructor called when an object 
         /// is created and sets up an array of students.
@@ -131,7 +122,7 @@ namespace ConsoleAppProject.App03
 
         public void AddStudent()
         {
-            Console.Write($"Enter the name of the student >  ");
+            Console.Write($" Enter the name of the student >  ");
             Students[0] = Console.ReadLine();
             MainMenu();
         }
@@ -145,7 +136,7 @@ namespace ConsoleAppProject.App03
             Console.WriteLine();
             for (int i = 0; i < Students.Length; i++)
             {
-                Console.Write($"Enter the marks for {Students[i]} ");
+                Console.Write($" Enter the marks for {Students[i]} ");
                 Marks[i] = (int)ConsoleHelper.InputIntegar("> ");
             }
 
@@ -261,7 +252,7 @@ namespace ConsoleAppProject.App03
             foreach (int count in GradeProfile)
             {
                 int percentage = count * 100 / Marks.Length;
-                Console.WriteLine($"Grade {grade} {percentage}% Count {count}");
+                Console.WriteLine($" Grade {grade} {percentage}% Count {count}");
                 grade++;
             }
             MainMenu(); 
