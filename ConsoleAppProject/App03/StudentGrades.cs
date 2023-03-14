@@ -7,8 +7,9 @@ using ConsoleAppProject.Helpers;
 namespace ConsoleAppProject.App03
 {
     /// <summary>
-    ///This class allows the user to enter grades against pre entered
-    ///student names and prints the marks and calulates the grades.
+    ///This class allows the user to enter grades against pre entered and new
+    ///student names and prints the marks and grades. Another function of this class is to
+    ///calculates the mean,max and min of the marks. This class also outputs a grade profile. 
     /// </summary>
     public class StudentGrades
     {   
@@ -42,9 +43,7 @@ namespace ConsoleAppProject.App03
             }; 
 
             GradeProfile = new int[(int)Grades.A + 1];
-
             Marks = new int[Students.Length];
-
             CalculatedGrades = new Grades[Marks.Length];
         }
 
@@ -153,7 +152,6 @@ namespace ConsoleAppProject.App03
                 Console.Write($" Enter the marks for {Students[i]} ");
                 Marks[i] = (int)ConsoleHelper.InputIntegar("> ");
             }
-
             MainMenu();
         }
 
