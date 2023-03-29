@@ -44,8 +44,21 @@ namespace ConsoleAppProject.App04
         }
 
 
-       
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Display()
+        {
+            
+            Console.WriteLine($"    Filename: [{Filename}]");
+            Console.WriteLine($"    Caption: {Caption}");
 
-       
+            base.Display();
+
+        }
+
+
+
+
     }
 }

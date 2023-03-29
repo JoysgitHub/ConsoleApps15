@@ -28,6 +28,12 @@ namespace ConsoleAppProject.App04
         public NewsFeed()
         {
             posts = new List<Post>();
+
+            MessagePost post = new MessagePost("Joy", "Mangio ice is nice");
+            AddMessagePost(post);
+
+            PhotoPost photoPost = new PhotoPost("Joy","Photo1.jpg" ,"Mangio ice is nice");
+            AddPhotoPost(photoPost);
         }
 
 

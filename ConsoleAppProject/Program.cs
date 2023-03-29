@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -37,24 +38,30 @@ namespace ConsoleAppProject
             Console.WriteLine();
             Console.Beep();
 
-            string[] choices = { "Distance Converter", "BMI Converter","Student Grades" };
+            string[] choices = { "Distance Converter", "BMI Converter","Student Grades","Social Network" };
             int choiceNo = ConsoleHelper.SelectChoice(choices);
 
-            if (choiceNo == 1 ) 
+            if (choiceNo == 1)
             {
                 DistanceConverter converter = new DistanceConverter();
                 converter.ConvertDistance();
             }
-            else if (choiceNo == 2 )
+            else if (choiceNo == 2)
             {
                 BMI calculator = new BMI();
                 calculator.BMICalculator();
-            }      
-            else if (choiceNo == 3 )
+            }
+            else if (choiceNo == 3)
             {
                 StudentGrades studentGrades = new StudentGrades();
                 studentGrades.StudentGradesMain();
             }
+            else if (choiceNo == 4)
+            {
+                NetworkApp app04 = new NetworkApp();
+                app04.DisplayMenu();
+            }
+            else Console.WriteLine("Invalid Choice !");
         }
     }
 }
