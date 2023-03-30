@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsoleAppProject.App04
 {
     public class Post
     {
+        public int PostId { get; }
+
+        private static int instances = 0;
 
         private int likes;
 
@@ -12,12 +16,16 @@ namespace ConsoleAppProject.App04
 
 
         // username of the post's author
+        [StringLength(20), Required]
         public String Username { get; }
 
         public DateTime Timestamp { get; }
 
         public Post(string author)
         {
+            instances++;
+            PostId = instances;
+
             this.Username = author;
             Timestamp = DateTime.Now;
 
@@ -119,7 +127,10 @@ namespace ConsoleAppProject.App04
         }
 
 
-
+        public static int GetNumberOfPosts()
+        {
+            return instances;
+        }
 
 
 
