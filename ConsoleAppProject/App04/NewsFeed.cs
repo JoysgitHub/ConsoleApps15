@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ConsoleAppProject.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 
 namespace ConsoleAppProject.App04
@@ -22,6 +24,7 @@ namespace ConsoleAppProject.App04
     {
         private readonly List<Post> posts;
 
+
         ///<summary>
         /// Construct an empty news feed.
         ///</summary>
@@ -29,10 +32,10 @@ namespace ConsoleAppProject.App04
         {
             posts = new List<Post>();
 
-            MessagePost post = new MessagePost("Joy", "Mangio ice is nice");
+            MessagePost post = new MessagePost("Boy", "Mangio ice is nice");
             AddMessagePost(post);
 
-            PhotoPost photoPost = new PhotoPost("Joy","Photo1.jpg" ,"Mangio ice is nice");
+            PhotoPost photoPost = new PhotoPost("Joy","Photo1.jpg" ,"Mangio Image ice is nice");
             AddPhotoPost(photoPost);
         }
 
@@ -95,11 +98,11 @@ namespace ConsoleAppProject.App04
 
 
 
-            ///<summary>
-            /// Show the news feed. Currently: print the news feed details to the
-            /// terminal. (To do: replace this later with display in web browser.)
-            ///</summary>
-            public void Display()
+        ///<summary>
+        /// Show the news feed. Currently: print the news feed details to the
+        /// terminal. (To do: replace this later with display in web browser.)
+        ///</summary>      
+        public void Display()
         {
             // display all text posts
             foreach (Post post in posts)
@@ -109,6 +112,69 @@ namespace ConsoleAppProject.App04
             }
 
         }
+
+
+
+        public void AuthorDisplay(string name)
+        {
+
+            foreach (Post post in posts)
+            {
+                if(post.Username == name)
+                {
+                    post.Display();
+                    Console.WriteLine();   // empty line between posts
+                }
+                else  Console.WriteLine("       Author Not Found");
+
+
+                
+            }
+        }
+
+        public void AddComment(int id)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.PostId == id)
+                {
+                    Console.WriteLine();
+                    Console.Write("Comment: ");
+                    string comment = Console.ReadLine();
+                    post.AddComment(comment);
+                    Console.WriteLine("--------------------------------------------------");
+                    Console.WriteLine();
+
+                }
+
+
+            }
+        }
+
+
+        public void LikeOrDislikePosts(int id)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.PostId == id)
+                {
+
+                    string[] choices = { "To Like","To Dislike" };
+                    int choiceNo = ConsoleHelper.SelectChoice(choices);
+
+                    if (choiceNo == 1)
+                    {
+                        post.Like();
+                    }
+                    else post.Unlike();
+
+                }
+            }
+        }
+
+
+
+
     }
 
 }

@@ -31,6 +31,7 @@ namespace ConsoleAppProject.App04
 
             likes = 0;
             comments = new List<String>();
+           
 
         }
         /// <summary>
@@ -103,6 +104,7 @@ namespace ConsoleAppProject.App04
         public virtual void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"     PostID: {PostId}");
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
@@ -122,17 +124,20 @@ namespace ConsoleAppProject.App04
             }
             else
             {
-                Console.WriteLine($"    {comments.Count}  comment(s). Click here to view.");
+                foreach(String comment in comments)
+                {
+                    Console.WriteLine($"      Comment: {comment}");
+                }
             }
-        }
 
+            Console.WriteLine("--------------------------------------------------");
+        }
+         
 
         public static int GetNumberOfPosts()
         {
             return instances;
-        }
-
-
+        } 
 
 
 
