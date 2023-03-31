@@ -71,7 +71,7 @@ namespace ConsoleAppProject.App04
         /// </summary>
         private void LikeOrDislikePosts()
         {
-            ConsoleHelper.OutputTitle($"Liking A Post");
+            ConsoleHelper.OutputTitle($"Liking / Dislike A Post");
             int id = (int)ConsoleHelper.InputNumber("Please enter the post id > ",
                 1, Post.GetNumberOfPosts());
 

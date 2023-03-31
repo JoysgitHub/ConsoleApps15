@@ -120,7 +120,7 @@ namespace ConsoleAppProject.App04
             }
             else
             {
-                Console.WriteLine();
+                Console.WriteLine(" 0 people like this");
             }
 
             if (comments.Count == 0)

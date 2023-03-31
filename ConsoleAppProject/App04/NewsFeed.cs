@@ -129,8 +129,7 @@ namespace ConsoleAppProject.App04
                 {
                     post.Display();
                     Console.WriteLine();   // empty line between posts
-                }
-                else  Console.WriteLine($"       Author Not Found in Post {post.PostId}");                
+                }                               
             }
         }
 
