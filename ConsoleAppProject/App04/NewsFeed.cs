@@ -11,31 +11,32 @@ namespace ConsoleAppProject.App04
     /// application.
     /// 
     /// Display of the posts is currently simulated by printing the details to the
-    /// terminal. (Later, this should display in a browser.)
+    /// terminal.
     /// 
-    /// This version does not save the data to disk, and it does not provide any
-    /// search or ordering functions.
+    /// This version does not save the data to disk, and it provides 
+    /// search, delete, like and dislike functions.
     ///</summary>
     ///<author>
-    ///  Michael Kölling and David J. Barnes
+    ///  Joyson Cardoso
     ///  version 0.1
     ///</author> 
     public class NewsFeed
     {
+        //creates a list for new posts
         private readonly List<Post> posts;
 
 
         ///<summary>
-        /// Construct an empty news feed.
+        /// Construct a news feed with test posts.
         ///</summary>
         public NewsFeed()
         {
             posts = new List<Post>();
 
-            MessagePost post = new MessagePost("Boy", "Mangio ice is nice");
+            MessagePost post = new MessagePost("Bay", "I love the Moon!!!");
             AddMessagePost(post);
 
-            PhotoPost photoPost = new PhotoPost("Joy","Photo1.jpg" ,"Mangio Image ice is nice");
+            PhotoPost photoPost = new PhotoPost("Han","Sun1.jpg" ,"I love the Sun!!!");
             AddPhotoPost(photoPost);
         }
 
@@ -61,6 +62,9 @@ namespace ConsoleAppProject.App04
         }
 
         ///<summary>
+        ///This method searches for the post id inputed using the findPost method and returns
+        ///the post and stores it in the post variable, Which if found is then removed form the list 
+        ///using the Remove function.
         ///</summary>
         public void RemovePost(int id)
         {
@@ -69,12 +73,10 @@ namespace ConsoleAppProject.App04
             if (post == null)
             {
                 Console.WriteLine($" \nPost with ID = {id} does not exist!!\n");
-
             }
             else
             {
                 Console.WriteLine($" \nThe following Post {id} has been removed!\n");
-
                 posts.Remove(post);
                 post.Display();
                 
@@ -82,6 +84,8 @@ namespace ConsoleAppProject.App04
             
         }
 
+        ///This method is used to find the post using the PostID and returns it to the 
+        ///Removepost() function.
         public Post FindPost(int id)
         {
             foreach(Post post in posts)
@@ -95,12 +99,9 @@ namespace ConsoleAppProject.App04
             return null;
         }
 
-
-
-
         ///<summary>
         /// Show the news feed. Currently: print the news feed details to the
-        /// terminal. (To do: replace this later with display in web browser.)
+        /// terminal. 
         ///</summary>      
         public void Display()
         {
@@ -114,6 +115,10 @@ namespace ConsoleAppProject.App04
         }
 
 
+        ///This Method is used to find a paticular author and print thier post.
+        ///it uses a foreach loop to loop through the posts list and uses an if statment
+        ///to check if the input name matches the username element in each post. If the name matches 
+        ///it prints the post else it prints author not found in the post for wach dost and its ID.
 
         public void AuthorDisplay(string name)
         {
@@ -125,12 +130,14 @@ namespace ConsoleAppProject.App04
                     post.Display();
                     Console.WriteLine();   // empty line between posts
                 }
-                else  Console.WriteLine("       Author Not Found");
-
-
-                
+                else  Console.WriteLine($"       Author Not Found in Post {post.PostId}");                
             }
         }
+
+
+      
+        ///This method uses the PostId to find the post he user wants to comment on by comparing
+        ///The id to the post id elemt if it matches it adds the user comment to its comment list.
 
         public void AddComment(int id)
         {
@@ -142,15 +149,16 @@ namespace ConsoleAppProject.App04
                     Console.Write("Comment: ");
                     string comment = Console.ReadLine();
                     post.AddComment(comment);
-                    Console.WriteLine("--------------------------------------------------");
                     Console.WriteLine();
-
                 }
-
-
             }
         }
 
+        ///This method handles the like and dislike functionality. It Uses the input id 
+        ///and uses a foreach loop to find the id post in the post lists. If the PostID is 
+        ///found it prompts the user to enter 1 to like and 2 to dislike. The conditional 
+        ///statment is used to call the Like() or UnLike() which adds a like or subtracts
+        ///a like from the post.
 
         public void LikeOrDislikePosts(int id)
         {
@@ -171,10 +179,5 @@ namespace ConsoleAppProject.App04
                 }
             }
         }
-
-
-
-
     }
-
 }

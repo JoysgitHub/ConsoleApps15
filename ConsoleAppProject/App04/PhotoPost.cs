@@ -43,22 +43,16 @@ namespace ConsoleAppProject.App04
             
         }
 
-
         /// <summary>
-        /// 
+        /// This function displays the filename and image caption when called.
         /// </summary>
         public override void Display()
         {
-            
             Console.WriteLine($"    Filename: [{Filename}]");
             Console.WriteLine($"    Caption: {Caption}");
 
             base.Display();
 
         }
-
-
-
-
-    }
+     }
 }

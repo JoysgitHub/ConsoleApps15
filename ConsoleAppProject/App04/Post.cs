@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ConsoleAppProject.App04
-{
+{   
+    /// <summary>
+    /// This class is used to create the post object for each post.
+    /// </summary>
     public class Post
     {
+        //Variables for each post
         public int PostId { get; }
 
         private static int instances = 0;
 
         private int likes;
 
+        //List to store comments for each post.
         private readonly List<String> comments;
 
 
@@ -21,6 +26,7 @@ namespace ConsoleAppProject.App04
 
         public DateTime Timestamp { get; }
 
+        //Constructor for PostID, Username, Likes, timestamp and comment list for each post.
         public Post(string author)
         {
             instances++;
@@ -30,10 +36,10 @@ namespace ConsoleAppProject.App04
             Timestamp = DateTime.Now;
 
             likes = 0;
-            comments = new List<String>();
-           
+            comments = new List<String>();        
 
         }
+
         /// <summary>
         /// Record one more 'Like' indication from a user.
         /// </summary>
@@ -98,13 +104,12 @@ namespace ConsoleAppProject.App04
         ///<summary>
         /// Display the details of this post.
         /// 
-        /// (Currently: Print to the text terminal. This is simulating display 
-        /// in a web browser for now.)
+        /// Print to the text terminal
         ///</summary>
         public virtual void Display()
         {
             Console.WriteLine();
-            Console.WriteLine($"     PostID: {PostId}");
+            Console.WriteLine($"    PostID: {PostId}");
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
@@ -133,7 +138,7 @@ namespace ConsoleAppProject.App04
             Console.WriteLine("--------------------------------------------------");
         }
          
-
+        //This method returns the number of posts.
         public static int GetNumberOfPosts()
         {
             return instances;

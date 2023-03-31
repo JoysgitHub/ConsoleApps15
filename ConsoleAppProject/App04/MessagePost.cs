@@ -8,7 +8,7 @@ namespace ConsoleAppProject.App04
     /// text message. Other data, such as author and time, are also stored.
     /// </summary>
     /// <author>
-    /// Michael Kölling and David J. Barnes
+    /// Joyson Cardoso
     /// version 0.1
     /// </author>
     public class MessagePost : Post
@@ -32,19 +32,12 @@ namespace ConsoleAppProject.App04
             Message = text;
         }
 
-
-
+        ///This method is used to display the message 
         public override void Display()
         {
-            Console.WriteLine($"      Message: {Message}");           
+            Console.WriteLine($"    Message: {Message}");           
 
             base.Display();
         }
-
-
-
-
-
-
     }
 }
