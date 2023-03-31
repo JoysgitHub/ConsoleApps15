@@ -142,12 +142,14 @@ namespace ConsoleAppProject.App04
         public static int GetNumberOfPosts()
         {
             return instances;
-        } 
+        }
 
-
-
-
-
-
+        public NewsFeed NewsFeed
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

@@ -16,6 +16,14 @@ namespace ConsoleAppProject.App04
         //This creates an object of the NewsFeed class.
         private NewsFeed news = new NewsFeed();
 
+        public NewsFeed NewsFeed
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// This is first method that is called from the program.cs main method.
         /// First it prints the main menu choices and then prompts the user to input 
