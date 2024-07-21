@@ -1,11 +1,5 @@
 # C# Console Applications App01 to App05
-| Author | Details |
-| ---- | ---- |
-**Name**: | Joyson Cardoso  |
-**Student ID**: | 22225362 |
-**Course:** | Cyber Security |
-**Module**: | CO453     |
-**Started**: | February 2023 |    
+
 
 1. App01: Distance Converter
 2. App02: BMI Calculator
